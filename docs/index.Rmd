@@ -1,0 +1,13 @@
+---
+title: "index"
+author: "Jacob Kim"
+date: "2/24/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+source("../source/summaryinfo.R")
+```
+
+
