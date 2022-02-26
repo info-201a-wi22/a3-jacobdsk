@@ -13,6 +13,8 @@ Yearly_data <- country_level %>%
     black_jail_pop = sum(black_jail_pop, na.rm = TRUE),
   )
 
+# These four variables can be used to create a black_jail_prop and white_jail_prop
+# by year
 
 Yearly_data <- Yearly_data %>%
   filter(year > 1989)

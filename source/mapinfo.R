@@ -7,9 +7,12 @@ library(tidyverse)
 country_level <- country_level %>%
   filter(year == 2018)
 
+# Filter to 2018 only for current data
+
 summary <- country_level %>% 
   group_by(state) %>% 
   summarise(black_jail_pop = sum(black_jail_pop, na.rm = TRUE), black_pop_15to64 = sum(black_pop_15to64, na.rm = TRUE))
 summary <- summary %>%
   mutate(black_prop = black_jail_pop/black_pop_15to64)
 
+# The map will measure this black_prop
