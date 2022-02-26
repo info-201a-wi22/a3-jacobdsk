@@ -8,6 +8,45 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 source("../source/summaryinfo.R")
+library(knitr)
 ```
+
+**Introduction:**
+
+This report will cover incarceration rates of black people in the US. This data is important because it reveals signs of unequal treatment between races. The incarceration rate is determined by jail data from 1970 to 2018. In this data I chose to analyze specifically the incarceration rates of black people and compare them to white people within specific counties and overall.
+
+**Summary information:**
+
+Within the data, we see clear differences between black and white jail proportions. White people within counties usually make up around  `r 100 *(race_info$avg_white_pop_prop)` percent of the population, but they only take up an average of `r 100 *(race_info$avg_white_jail_prop)` percent of jails. Meanwhile, Black people within counties usually make up around `r 100 *(race_info$avg_black_pop_prop)` percent of the population within most counties, but they are, on average, `r 100 *(race_info$avg_black_jail_prop)` percent of the inmates in jail.  `r 100 * race_info$black_jail_amount_2000` percent of black people were in jail from 2000-2010 while only `r race_info$white_jail_amount_2000` percent of white people were in jail from 2000-2010.
+
+
+**Trends Over Time Chart:**
+
+```{r}
+source("../source/chartinfo.R")
+ggplot(data = los_angeles_data, aes(x = year, y = black_jail_prop, color =  county_name)) +
+  geom_line(data = los_angeles_data) +
+  geom_line(data = new_york_data) +
+  geom_line(data = cook_data) +
+  ggtitle("Proportion of Black People in Jail Over Time in 3 Biggest Cities") +
+  ylab("Proportion in Jail") +
+  labs(color = "County Name")
+```
+
+This graph was included to show the patterns of incarceration within bigger cities. This information is important as it displays the general trend of lower incarceration in bigger cities since 1990. In this graph, it displays the three largest counties and the proportion of black people in jail over time. There is a general trend downward in which every graph ends somewhere lower than the proportion in 1990. New York County had a proportion of 0.0033 in 2018 which is about 1 in every 300. This is a few times lower than in 1990. There is also a large spike in incarceration in 1992 in Los Angeles. This is most likely due to the LA riots in 1992 which were riots caused by racial tensions within the city.
+
+**Variable Comparison Chart:**
+```{r}
+source("../source/variablecomparisonchartinfo.R")
+ggplot(Yearly_data, aes(year)) + 
+  geom_line(aes(y = white_jail_prop, colour = "White Jail Proportion")) + 
+  geom_line(aes(y = black_jail_prop, colour = "Black Jail Proportion")) +
+  ggtitle("White and Black Proportion Chart") +
+  ylab("Proportion in Jail") +
+  labs(color = "Labels")
+```
+These two variables show the Black jail and White jail proportions overall in the US. This graph is important because, although the graph above shows some progress in lowering Black incarceration rates, there is still an incredibly large difference between White and Black incarceration rates. White incarceration rates across the years is around 3 times lower than Black incarceration rates. In recent years, Black incarceration rates have been slowly decreasing while White incarceration rates have only been increasing slightly. This is good news, but also reveals that there is a lot of progress to before we reach equal levels of incarceration and treatment.
+
+**Map:**
 
 
